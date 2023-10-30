@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Projects</title>
+    <style>
+        .title{
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <p>YouTube Subcribe Button</p>
+    <button class="js_subscribe" onclick="btnPress();">Subscribe</button>
+
+    <p class="title">Rock Paper Scissors</p>
+    <a href="/Rock Paper & Scissors/rockpaper.html" target="_blank">Click here</a>
+
+    <p class="title">Amazon Shipping Calculator</p>
+    <p>Orders under $40 = +$10 shipping.</p>
+    <p>Orders over $40 = FREE shipping.</p>
+    <p>
+        <input placeholder="Cost of orders" class="js-inputval" onkeydown="
+            if(event.key === 'Enter'){
+                claculateTotal();
+            }
+            ">
+        <button onclick="claculateTotal();">Calculator</button>
+    </p>
+    <p class="js-display"></p>
+    
+
+    <script>
+        function claculateTotal(){
+            const inputval = document.querySelector('.js-inputval');
+            let temp = Number(inputval.value);
+            if(temp < 40){
+                temp = temp + 10;
+            }
+            document.querySelector('.js-display').innerHTML = `$${temp}`;
+        }
+
+        function btnPress(){
+            let btnVal = document.querySelector('.js_subscribe');
+            if(btnVal.innerText === 'Subscribe'){
+                btnVal.innerHTML = 'Subscribed';
+            }else{
+                btnVal.innerHTML = 'Subscribe';
+            }
+        }
+    </script>
+</body>
+</html>

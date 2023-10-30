@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Check Console</h1>
+    <script>
+        // for(let i = 1; i <= 20; i++){
+        //     if(i % 3 === 0 && i % 5 === 0){
+        //         console.log('FizzBuzz');
+        //         continue;
+        //     }
+        //     else if(i % 3 === 0){
+        //         console.log('Fizz');
+        //         continue;
+        //     }
+        //     else if(i % 5 === 0){
+        //         console.log('Buzz');
+        //         continue;
+        //     }
+        //     else {
+        //         console.log(i);
+        //     }
+        // }
+
+        // function multiple(num1, num2){
+        //     let sum = 0;
+        //     for(let i = num1; i<= num2; i++){
+        //         if(i % 3 === 0 || i % 5 === 0){
+        //             console.log(i);
+        //             sum += i;
+        //         }
+        //     }
+        //     return sum;
+        // }
+        // console.log(multiple(1,100));
+        
+        // function reveString(word){
+        //     console.log(word.split(''));
+        //     console.log(word.split('').reverse());
+        //     console.log(word.split('').reverse().join(''));
+        //     return word.split('').reverse().join('');
+        // }
+        // console.log(reveString("Hello, World!"));
+
+        // function fact(n){
+        //     if(n === 0){
+        //         return 1;
+        //     }
+        //     return n * fact(n-1);
+        // }
+        // console.log(fact(21));
+
+        function isPalindrome(str){
+            console.log(str.replace(/[^A-Za-z0-9]/g, ''));
+            const temp = str.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
+            return temp === temp.split('').reverse().join('');
+        }
+        console.log(isPalindrome('RACEcar'));
+    </script>
+</body>
+</html>

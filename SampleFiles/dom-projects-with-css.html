@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Projects</title>
+    <style>
+        .css-subscribe{
+            border: none;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 0 gray;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .css-subscribe:active{
+            transform: translateX(0px) translateY(2px);
+            box-shadow: 0 0 0 white;
+        }
+        .is-subscribe{
+            background-color: rgb(240, 240, 240);
+            color: black;
+            border: none;
+            box-shadow: 0 2px 0 black;
+        }
+        .title{
+            margin-top: 50px;
+        }
+        .css-inputval{
+            padding: 5px;
+            font-size: 15px;
+            border: 1px solid rgb(60, 60, 60);
+            border-radius: 2px;
+        }
+        .cal-btn{
+            background-color: lightgreen;
+            border: none;
+            padding: 7px 5px;
+            border-radius: 50px;
+            font-size: 15px;
+            cursor: pointer;
+            color: black;
+
+            box-shadow: 0 2px 0 green;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .cal-btn:active{
+            transform: translateX(0px) translateY(2px);
+            box-shadow: 0 0 0 white;
+        }
+        span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <p>YouTube Subcribe Button</p>
+    <button class="js_subscribe css-subscribe" onclick="btnPress();">Subscribe</button>
+
+    <p class="title">Rock Paper Scissors</p>
+    <a href="/Rock Paper & Scissors/rockpaper.html" target="_blank">Click here</a>
+
+    <p class="title">Amazon Shipping Calculator</p>
+    <p>Orders under $40 = +$10 shipping.</p>
+    <p>Orders over $40 = FREE shipping.</p>
+    <p>
+        <input placeholder="Cost of orders" class="js-inputval css-inputval" onkeydown="
+            if(event.key === 'Enter'){
+                claculateTotal();
+            }
+            ">
+        <button onclick="claculateTotal();" class="cal-btn">Calculator</button>
+    </p>
+    <p class="js-display"></p>
+    
+
+    <script>
+        function claculateTotal(){
+            const inputval = document.querySelector('.js-inputval');
+            let temp = Number(inputval.value);
+            if(temp < 40 && temp > 0){
+                temp = temp + 10;
+                document.querySelector('.js-display').innerHTML = `Total cost of Orders: $${temp}`;
+            }
+            else if(temp < 0){
+                document.querySelector('.js-display').innerHTML = `<p><span>Error: cost cannot be less than $0</span></p>`;    
+            }
+            else if(temp >= 40){
+                document.querySelector('.js-display').innerHTML = `Total cost of Orders: $${temp}`;
+            }
+        }
+
+        function btnPress(){
+            let btnVal = document.querySelector('.js_subscribe');
+            if(btnVal.innerText === 'Subscribe'){
+                btnVal.innerHTML = 'Subscribed';
+                btnVal.classList.add('is-subscribe');
+            }else{
+                btnVal.innerHTML = 'Subscribe';
+                btnVal.classList.remove('is-subscribe');
+            }
+        }
+    </script>
+</body>
+</html>

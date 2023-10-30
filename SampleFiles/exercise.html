@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise-1</title>
+</head>
+<body>
+    <h1>User Information</h1>
+    <p><strong>Name:</strong> <span id="name"></span></p>
+    <p><strong>Age:</strong> <span id="age"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+    <button onclick="clearUserData()">Clear Data</button>
+    <script>
+        // Step 1: Create an object called userInfo
+        const userinfo = {
+            name: 'John Doe',
+            age: 27,
+            email: 'john.doe@gmail.com'
+        };
+
+        // Step 2: Convert userInfo object to a JSON string
+        const userinfojson = JSON.stringify(userinfo);
+
+        // Step 3: Store the JSON string in localStorage
+        localStorage.setItem('user', userinfojson);
+
+        // Retrieve data from localStorage
+        const userInfoJSON = localStorage.getItem('user');
+
+        console.log(userInfoJSON);
+
+        if (userInfoJSON) {
+            // Convert JSON string to JavaScript object
+            const userInfo = JSON.parse(userInfoJSON);
+
+            // Display user information on the web page
+            document.getElementById('name').textContent = userInfo.name;
+            document.getElementById('age').textContent = userInfo.age;
+            document.getElementById('email').textContent = userInfo.email;
+        } else {
+            // Handle the case when no user data is found
+            alert('User data not found in localStorage.');
+        }
+
+        function clearUserData() {
+            localStorage.removeItem('user');
+
+            alert('User data is removed from localStorage.');
+
+            console.log(localStorage.getItem('user'));
+        }
+    </script>
+</body>
+</html>

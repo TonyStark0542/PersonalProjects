@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Flip</title>
+</head>
+<body>
+    <button onclick="playGame('heads');">Heads</button>
+    <button onclick="playGame('tails');">Tails</button>
+    <button onclick="resetbnt();">Reset</button>
+    <button onclick="
+        console.log(score);
+    ">Show Current Score</button>
+
+    <script>
+        let score = JSON.parse(localStorage.getItem('scoreVal')) || {
+            wins: 0,
+            loss: 0
+        };
+
+        let result = '';
+
+        function playGame(guess){
+            const ranGenVal = randomGen();
+            if(guess === 'heads'){
+                if(ranGenVal === 'heads'){
+                    score.wins += 1;
+                    result = 'You win.';
+                }
+                else{
+                    score.loss += 1;
+                    result = 'You loss.';
+                }
+            }
+            else if(guess === 'tails'){
+                if(ranGenVal === 'tails'){
+                    score.wins += 1;
+                    result = 'You win.';
+                }
+                else{
+                    score.loss += 1;
+                    result = 'You loss.';
+                }
+            }
+
+            localStorage.setItem('scoreVal',JSON.stringify(score));
+
+            alert(`You picked ${guess}. Coin outcome is ${ranGenVal}. ${result}`);
+        }
+
+        function randomGen(){
+            const RandomNo = Math.random();
+            let ranGen = '';
+            if(RandomNo >= 0 && RandomNo < 1/2){
+                ranGen = 'tails';
+            }
+            else if(RandomNo >= 1/2 && RandomNo < 1){
+                ranGen = 'heads';
+            }
+            return ranGen;
+        }
+
+        function resetbnt(){
+            score.wins = 0;
+            score.loss = 0;
+            localStorage.removeItem('scoreVal');
+            console.log(score);
+        }
+    </script>
+</body>
+</html>
