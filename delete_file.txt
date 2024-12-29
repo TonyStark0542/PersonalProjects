@@ -1,0 +1,10 @@
+Job failure:
+1. for any job failure check kb article/ previous INC
+2. for callout to identify it is:
+		1st is check the INC from ops teams that please raise a callout
+		2nd check kb article
+		3rd priority 1 and urgency 1
+3. set complete means we are putting job as complete we may have 3 types
+		1. when the job fails we are telling the ops teams to restart again and then the job gets completed(don't forget to remove the rec file)
+		2. we are running from backend after that we are telling the ops team to set complete in IWS(don't forget to remove the rec file)
+		3. we are putting the failed job as complete without restarting it.(from previous INC)
