@@ -49,6 +49,17 @@ html {
     border-color: #e63946;
 }
 
+/* #weather-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#weather-icon {
+    width: 24px;
+    height: 24px;
+} */
+
 .header-right {
     display: flex;
     align-items: center;
