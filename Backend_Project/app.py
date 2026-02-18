@@ -11,7 +11,7 @@ app = Flask(__name__)
 # then after that run this ->  python app.py
 
 # Configure MongoDB client
-client = MongoClient("mongodb://localhost:27017")
+client = MongoClient("mongodb://172.17.0.2:27017")
 db = client['bookstore']  # Replace with your database name
 
 @app.route('/')
@@ -94,7 +94,7 @@ def get_books_by_category(category_name):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
 
 # ============================================================================================
 
