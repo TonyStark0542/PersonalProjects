@@ -1,0 +1,35 @@
+[{
+  "_id": {
+    "$oid": "667c3ead8004a0c7db5d068e"
+  },
+  "name": "Fiction",
+  "description": "A literary genre that includes imaginary events and people."
+},
+{
+  "_id": {
+    "$oid": "667c3ead8004a0c7db5d068f"
+  },
+  "name": "Classic Literature",
+  "description": "Literary works that have stood the test of time and are recognized for their outstanding qualities."
+},
+{
+  "_id": {
+    "$oid": "667c3ead8004a0c7db5d0690"
+  },
+  "name": "Modern Classics",
+  "description": "Books that have achieved critical acclaim and popularity in the contemporary era."
+},
+{
+  "_id": {
+    "$oid": "667c3ead8004a0c7db5d0691"
+  },
+  "name": "Contemporary Fiction",
+  "description": "Fictional works that reflect current themes, society, and culture."
+},
+{
+  "_id": {
+    "$oid": "667c3ead8004a0c7db5d0692"
+  },
+  "name": "Poetry",
+  "description": "A genre of literature that uses aesthetic and rhythmic qualities of language to evoke meanings."
+}]
