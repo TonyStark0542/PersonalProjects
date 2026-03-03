@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  # The Database
+  mongodb:
+    image: mongo:latest
+    container_name: my-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+      # This line maps your local backup file directly into the container!
+      - ../db_backup.archive:/db_backup.archive
+
+  # Your Flask App
+  flask-app:
+    build: .
+    container_name: my-flask-app
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/bookstore
+    depends_on:
+      - mongodb
+
+volumes:
+  mongo-data:
