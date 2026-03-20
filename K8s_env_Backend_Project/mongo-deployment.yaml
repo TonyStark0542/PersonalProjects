@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+      - name: mongodb
+        image: mongo:latest
+        resources:
+          requests:
+            memory: "512Mi"    # Minimum guaranteed RAM
+            cpu: "250m"      # Half a vCPU
+          limits:
+            memory: "2Gi"    # Hard ceiling - will crash (OOM) if it hits this
+            cpu: "1"         # Full vCPU
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - name: mongo-storage
+          mountPath: /data/db  # This is where MongoDB saves its files
+      volumes:
+      - name: mongo-storage
+        persistentVolumeClaim:
+          claimName: mongo-pvc # This connects to the PVC we made above
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service  # Flask will use this name to find the DB
+spec:
+  selector:
+    app: mongodb
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+  type: ClusterIP        # Internal only; the world doesn't need to see your DB
+
