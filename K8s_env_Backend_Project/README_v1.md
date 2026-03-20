@@ -127,5 +127,3 @@ gcloud compute firewall-rules create allow-flask \
     --target-tags=http-server \
     --description="Allow port 5000 for Flask app"
 ```
-
-# Multi-Container Python App (The DB Connection) -- Version:2 (Using Kubernetes)
