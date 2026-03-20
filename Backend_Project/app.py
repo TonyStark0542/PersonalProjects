@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, jsonify, request
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -11,7 +12,9 @@ app = Flask(__name__)
 # then after that run this ->  python app.py
 
 # Configure MongoDB client
-client = MongoClient("mongodb://172.17.0.2:27017")
+mongo_uri = os.environ.get("MONGO_URI", "mongodb://localhost:27017") # to use in k8s
+
+client = MongoClient(mongo_uri)
 db = client['bookstore']  # Replace with your database name
 
 @app.route('/')
