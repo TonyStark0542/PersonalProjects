@@ -1,4 +1,4 @@
-# Multi-Container Python/Node App (The DB Connection)
+# Multi-Container Python App (The DB Connection) -- Version:1
 
 ## Goal
 Connect two containers using a custom bridge network.
@@ -127,3 +127,5 @@ gcloud compute firewall-rules create allow-flask \
     --target-tags=http-server \
     --description="Allow port 5000 for Flask app"
 ```
+
+# Multi-Container Python App (The DB Connection) -- Version:2 (Using Kubernetes)
