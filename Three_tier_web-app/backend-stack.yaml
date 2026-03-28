@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: tonystark0542/bookstore-backend:v1 # Change to your DockerHub user
+        image: tonystark0542/bookstore-backend:v2 # Change to your DockerHub user
         ports:
         - containerPort: 5000
         env:
@@ -25,11 +25,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: backend-service
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}' # Tells GKE to use Network Endpoint Groups (Faster)
 spec:
+  type: NodePort # CHANGED from LoadBalancer
   selector:
     app: backend
   ports:
     - protocol: TCP
       port: 5000
       targetPort: 5000
-  type: LoadBalancer # Needed so the browser (frontend) can reach the API

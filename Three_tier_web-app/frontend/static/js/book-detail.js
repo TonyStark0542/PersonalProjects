@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const bookId = urlParams.get('id');
 
     if (bookId) {
-        fetch(`${API_BASE_URL}/api/books/${bookId}`)
+        fetch(`${API_BASE_URL}/books/${bookId}`)
             .then(response => response.json())
             .then(book => {
                 document.getElementById('detail-image').src = `data:image/jpeg;base64,${book.cover_image}`;

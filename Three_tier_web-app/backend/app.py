@@ -9,13 +9,18 @@ app = Flask(__name__)
 CORS(app) 
 
 # Use an environment variable for Mongo so it works on your Mac and in Kubernetes
-mongo_uri = os.environ.get("MONGO_URI", "mongodb://localhost:27017")
+mongo_uri = os.environ.get("MONGO_URI", "mongodb://mongodb-service:27017")
 client = MongoClient(mongo_uri)
 db = client['bookstore']
 
+# The Health Check
+@app.route('/')
+def health_check():
+    return "OK", 200
+
 # TIER 2 API: Get all books
 # Used by js/main.js
-@app.route('/books', methods=['GET'])
+@app.route('/api/books', methods=['GET'])
 def get_all_books():
     try:
         books_cursor = db['books'].find()

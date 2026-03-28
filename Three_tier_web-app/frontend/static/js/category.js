@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (categoryName) {
         document.getElementById('cat-name').textContent = categoryName;
         
-        fetch(`${API_BASE_URL}/api/books/category/${encodeURIComponent(categoryName)}`)
+        fetch(`${API_BASE_URL}/books/category/${encodeURIComponent(categoryName)}`)
             .then(response => response.json())
             .then(data => {
                 const booksGrid = document.getElementById('books-grid');

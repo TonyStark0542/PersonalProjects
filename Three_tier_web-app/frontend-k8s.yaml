@@ -14,19 +14,27 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: tonystark0542/bookstore-frontend:v1 # Change to your DockerHub user
-        ports:
-        - containerPort: 80
+        image: tonystark0542/bookstore-frontend:v2 # Change to your DockerHub user
+        volumeMounts:
+        - name: config-volume
+          mountPath: /usr/share/nginx/html/static/js/config.js
+          subPath: config.js
+      volumes:
+      - name: config-volume
+        configMap:
+          name: frontend-config
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: frontend-service
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}'
 spec:
+  type: NodePort # CHANGED from LoadBalancer
   selector:
     app: frontend
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: LoadBalancer # The public IP for your users
