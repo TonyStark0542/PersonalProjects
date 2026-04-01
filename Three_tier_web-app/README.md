@@ -111,14 +111,24 @@ This deploys my Python Flask API. It only speaks JSON — no HTML, no templates,
 
 ---
 
-### Step 5 — Deploy the Frontend and Wire Up the Ingress
+### Step 5 — Configure and Deploy the Frontend and Wire Up the Ingress
+
+Before we deploy the UI, we need to inject our environment variables. We use a ConfigMap so the frontend knows to send API calls to the /api path on our Ingress IP.
+
+1. Create the configuration:
+
+```bash
+kubectl create configmap frontend-config --from-literal=config.js="const API_BASE_URL = '/api';"
+```
+
+2. Deploy the Frontend and Ingress:
 
 ```bash
 kubectl apply -f frontend-k8s.yaml
 kubectl apply -f bookstore-ingress.yaml
 ```
 
-The first command deploys my Nginx server and the ConfigMap that injects the backend API URL into the frontend at runtime — so my JS files know where to send API calls without me hardcoding anything.
+The first command creates a virtual file called config.js inside the cluster. When the Nginx Pod starts, it "grabs" this file and mounts it directly into the /js folder. This is the "DevOps Pro" way to handle settings—it means my Docker image remains generic and I can change the API path at any time without rebuilding the whole image.
 
 The second command creates the Ingress — my single public Load Balancer. It's the only thing in my entire cluster that's exposed to the internet. Everything else is internal.
 
