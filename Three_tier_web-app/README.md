@@ -67,8 +67,9 @@ Internet
 
 ```bash
 gcloud container clusters create bookstore-cluster \
-  --zone us-central1-a \
-  --num-nodes 2
+  --zone=us-central1-a \
+  --num-nodes=2 \
+  --machine-type=e2-medium
 ```
 
 I used a zonal cluster with just 2 nodes to keep costs down. Going multi-zone would have multiplied my nodes across zones — 2 nodes silently becomes 6. For this project, one zone is perfectly fine.
