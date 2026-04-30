@@ -1,0 +1,29 @@
+pipeline {
+  agent {
+    docker {
+        image 'python:3.9-slim'
+    }
+  }
+  environment {
+        VERSION = "3.0.${env.BUILD_NUMBER}"
+    }
+  stages {
+    stage('Test') {
+      steps {
+        echo "Testing version: ${env.VERSION}"  
+        sh 'python --version'
+      }
+    }
+  }
+  post {
+      always {
+          echo "Pipeline finished. Cleaning up..."
+      }
+      success{
+          echo "Build ${env.BUILD_NUMBER} was a Success."
+      }
+      failure {
+          echo "Build ${env.BUILD_NUMBER} Failed. Check the logs!"
+      }
+  }
+}
